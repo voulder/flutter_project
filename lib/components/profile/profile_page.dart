@@ -8,11 +8,7 @@ import '../../app/app.dart';
 import '../app_widgets/app_widgets.dart';
 import '../new_post/new_post.dart';
 
-/// {@template profile_page}
-/// User profile page. List of user created posts.
-/// {@endtemplate}
 class ProfilePage extends StatefulWidget {
-  /// {@macro profile_page}
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
@@ -25,7 +21,6 @@ class _ProfilePageState extends State<ProfilePage> {
   static const _feedGroup = 'user';
 
   Future<void> _loadMore() async {
-    // Ensure we're not already loading more activities.
     if (!_isPaginating) {
       _isPaginating = true;
       context.feedBloc
@@ -62,12 +57,11 @@ class _ProfilePageState extends State<ProfilePage> {
       feedBuilder: (context, activities) {
         return RefreshIndicator(
           onRefresh: () async {
-            // Refresh follow counts
             await FeedProvider.of(context)
                 .bloc
                 .currentUser!
                 .get(withFollowCounts: true);
-            // Refresh activities
+
             if (!mounted) return;
             return FeedProvider.of(context)
                 .bloc
@@ -94,7 +88,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    // Pagination (Infinite scroll)
                     bool shouldLoadMore = activities.length - 3 == index;
                     if (shouldLoadMore) {
                       _loadMore();
@@ -258,7 +251,7 @@ class _NoPostsMessage extends StatelessWidget {
         const SizedBox(height: 12),
         ElevatedButton(
           onPressed: () {
-            Navigator.of(context).push(NewPostScreen.route); // ADD THIS
+            Navigator.of(context).push(NewPostScreen.route);
           },
           child: const Text('Add a post'),
         )

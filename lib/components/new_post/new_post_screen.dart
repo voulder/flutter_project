@@ -7,12 +7,9 @@ import 'package:transparent_image/transparent_image.dart';
 import '../../app/app.dart';
 import '../app_widgets/app_widgets.dart';
 
-/// Screen to choose photos and add a new feed post.
 class NewPostScreen extends StatefulWidget {
-  /// Create a [NewPostScreen].
   const NewPostScreen({Key? key}) : super(key: key);
 
-  /// Material route to this screen.
   static Route get route =>
       MaterialPageRoute(builder: (_) => const NewPostScreen());
 

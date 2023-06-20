@@ -5,16 +5,11 @@ import 'package:provider/provider.dart';
 import '../../app/app.dart';
 import '../app_widgets/app_widgets.dart';
 
-/// {@template edit_profile_page}
-/// Screen to edit a user's profile info.
-/// {@endtemplate}
 class EditProfileScreen extends StatelessWidget {
-  /// {@macro edit_profile_page}
   const EditProfileScreen({
     Key? key,
   }) : super(key: key);
 
-  /// Custom route to this screen. Animates from the bottom up.
   static Route get route => PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const EditProfileScreen(),

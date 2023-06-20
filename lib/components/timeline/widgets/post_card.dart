@@ -13,18 +13,13 @@ typedef OnAddComment = void Function(
   String? message,
 });
 
-/// {@template post_card}
-/// A card that displays a user post/activity.
-/// {@endtemplate}
 class PostCard extends StatelessWidget {
-  /// {@macro post_card}
   const PostCard({
     Key? key,
     required this.enrichedActivity,
     required this.onAddComment,
   }) : super(key: key);
 
-  /// Enriched activity (post) to display.
   final EnrichedActivity enrichedActivity;
   final OnAddComment onAddComment;
 
@@ -95,11 +90,10 @@ class __PictureCarousalState extends State<_PictureCarousal> {
 
   Future<void> _removeLikeReaction() async {
     late String? reactionId;
-    // A new reaction was added to this state.
+
     if (latestLikeReaction != null) {
       reactionId = latestLikeReaction?.id;
     } else {
-      // An old reaction has been retrieved from Stream.
       final prevReaction = widget.enrichedActivity.ownReactions?['like'];
       if (prevReaction != null && prevReaction.isNotEmpty) {
         reactionId = prevReaction[0].id;
@@ -131,7 +125,6 @@ class __PictureCarousalState extends State<_PictureCarousal> {
     );
   }
 
-  /// Picture carousal and interaction buttons.
   List<Widget> _pictureCarousel(BuildContext context) {
     const iconPadding = EdgeInsets.symmetric(horizontal: 8, vertical: 4);
     var imageUrl = widget.enrichedActivity.extraData!['image_url'] as String;
@@ -175,10 +168,8 @@ class __PictureCarousalState extends State<_PictureCarousal> {
             padding: iconPadding,
             child: TapFadeIcon(
               onTap: () {
-                // ADD THIS
                 final map = widget.enrichedActivity.actor!.data!;
 
-                // AND THIS
                 Navigator.of(context).push(
                   CommentsScreen.route(
                     enrichedActivity: widget.enrichedActivity,
@@ -355,7 +346,7 @@ class _InteractiveCommentSlabState extends State<_InteractiveCommentSlab> {
               onTap: () {
                 final map =
                     widget.enrichedActivity.actor!.data as Map<String, dynamic>;
-                // AND THIS
+
                 Navigator.of(context).push(CommentsScreen.route(
                   enrichedActivity: widget.enrichedActivity,
                   activityOwnerData: StreamagramUser.fromMap(map),

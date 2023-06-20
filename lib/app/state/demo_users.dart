@@ -1,65 +1,82 @@
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
-/// Demo application users.
-enum DemoAppUser {
-  sahil,
-  sacha,
-  salvatore,
-  gordon,
+late StreamFeedClient serverClient;
+
+String? apiKey = 'dnr3fd6k83bt';
+String? apiSecret =
+    'f2w3w75k28y4dfmmtercm3dhwjt7nbfc48m9s65rurmn42uh6kce6u4ssyrcspfm';
+
+void generate() {
+  print('\nCreating server client...\n');
+  serverClient = StreamFeedClient(
+    apiKey!,
+    secret: apiSecret,
+    runner: Runner.server,
+  );
 }
 
-/// Convenient class Extension on [DemoAppUser] enum
+enum DemoAppUser {
+  andy,
+  aurel,
+  farhan,
+  levina,
+  maggie,
+}
+
 extension DemoAppUserX on DemoAppUser {
-  /// Convenient method Extension to generate an [id] from [DemoAppUser] enum
   String get id => {
-        DemoAppUser.sahil: 'sahil-kumar',
-        DemoAppUser.sacha: 'sacha-arbonel',
-        DemoAppUser.salvatore: 'salvatore-giordano',
-        DemoAppUser.gordon: 'gordon-hayes',
+        DemoAppUser.andy: 'andhika-putra',
+        DemoAppUser.aurel: 'aurelia-aurelia',
+        DemoAppUser.farhan: 'farhan-adithya',
+        DemoAppUser.levina: 'levina-olivia',
+        DemoAppUser.maggie: 'maggie-lim',
       }[this]!;
 
-  /// Convenient method Extension to generate a [name] from [DemoAppUser] enum
   String? get name => {
-        DemoAppUser.sahil: 'Sahil Kumar',
-        DemoAppUser.sacha: 'Sacha Arbonel',
-        DemoAppUser.salvatore: 'Salvatore Giordano',
-        DemoAppUser.gordon: 'Gordon Hayes',
+        DemoAppUser.andy: 'Andhika Putra',
+        DemoAppUser.aurel: 'Aurelia Aurelia',
+        DemoAppUser.farhan: 'Farhan Adithya',
+        DemoAppUser.levina: 'Levina Olivia',
+        DemoAppUser.maggie: 'Maggie Lim',
       }[this];
 
-  /// Convenient method Extension to generate [data] from [DemoAppUser] enum
   Map<String, Object>? get data => {
-        DemoAppUser.sahil: {
-          'first_name': 'Sahil',
-          'last_name': 'Kumar',
-          'full_name': 'Sahil Kumar',
+        DemoAppUser.andy: {
+          'first_name': 'Andhika',
+          'last_name': 'Putra',
+          'full_name': 'Andhika Putra',
         },
-        DemoAppUser.sacha: {
-          'first_name': 'Sacha',
-          'last_name': 'Arbonel',
-          'full_name': 'Sacha Arbonel',
+        DemoAppUser.aurel: {
+          'first_name': 'Aurelia',
+          'last_name': 'Aurelia',
+          'full_name': 'Aurelia Aurelia',
         },
-        DemoAppUser.salvatore: {
-          'first_name': 'Salvatore',
-          'last_name': 'Giordano',
-          'full_name': 'Salvatore Giordano',
+        DemoAppUser.farhan: {
+          'first_name': 'Farhan',
+          'last_name': 'Farhan Adithya',
+          'full_name': 'Farhan Adithya',
         },
-        DemoAppUser.gordon: {
-          'first_name': 'Gordon',
-          'last_name': 'Hayes',
-          'full_name': 'Gordon Hayes',
+        DemoAppUser.levina: {
+          'first_name': 'Levina',
+          'last_name': 'Olivia',
+          'full_name': 'Levina Olivia',
+        },
+        DemoAppUser.maggie: {
+          'first_name': 'Maggie',
+          'last_name': 'Lim',
+          'full_name': 'Maggie Lim',
         },
       }[this];
 
-  /// Convenient method Extension to generate a [token] from [DemoAppUser] enum
-  Token? get token => <DemoAppUser, Token>{
-        // TODO: Generate your own tokens if you're using your own API key.
-        DemoAppUser.sahil: const Token(
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2FoaWwta3VtYXIifQ.Ts_4yhx6P4syDdO5g0QKJXqcET-0UO3mZHY_tKbseoA'),
-        DemoAppUser.sacha: const Token(
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2FjaGEtYXJib25lbCJ9.atw_x8yl5bnhXbDKntlNtIVfLfQm9fe2xpaUuzIHHsM'),
-        DemoAppUser.salvatore: const Token(
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2FsdmF0b3JlLWdpb3JkYW5vIn0.C3sS6UM6LhZbM2evWaIDlp8N_V3g11fvah9Llk3Gs4w'),
-        DemoAppUser.gordon: const Token(
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZ29yZG9uLWhheWVzIn0.q0C65xjNtMdZ62pHcVodSjP6SqVh_BL9GNYavnp0l-4'),
-      }[this];
+  Token? get token {
+    final frontendTokens = <DemoAppUser, Token>{
+      DemoAppUser.andy: serverClient.frontendToken('andhika-putra'),
+      DemoAppUser.aurel: serverClient.frontendToken('aurelia-aurelia'),
+      DemoAppUser.farhan: serverClient.frontendToken('farhan-adithya'),
+      DemoAppUser.levina: serverClient.frontendToken('levina-olivia'),
+      DemoAppUser.maggie: serverClient.frontendToken('maggie-lim'),
+    };
+
+    return frontendTokens[this];
+  }
 }

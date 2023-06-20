@@ -7,9 +7,7 @@ import '../../app/app.dart';
 import '../app_widgets/app_widgets.dart';
 import 'state/state.dart';
 
-/// Screen that shows all comments for a given post.
 class CommentsScreen extends StatefulWidget {
-  /// Creates a new [CommentsScreen].
   const CommentsScreen({
     Key? key,
     required this.enrichedActivity,
@@ -18,10 +16,8 @@ class CommentsScreen extends StatefulWidget {
 
   final EnrichedActivity enrichedActivity;
 
-  /// Owner / [User] of the activity.
   final StreamagramUser activityOwnerData;
 
-  /// MaterialPageRoute to this screen.
   static Route route({
     required EnrichedActivity enrichedActivity,
     required StreamagramUser activityOwnerData,
@@ -116,8 +112,6 @@ class _CommentsList extends StatelessWidget {
           itemCount: reactions.length + 1,
           itemBuilder: (context, index) {
             if (index == reactions.length) {
-              // Bottom padding to ensure [CommentBox] does not obscure
-              // visibility
               return const SizedBox(
                 height: 120,
               );

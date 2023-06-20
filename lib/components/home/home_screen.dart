@@ -9,17 +9,9 @@ import '../../app/app.dart';
 import '../app_widgets/app_widgets.dart';
 import '../new_post/new_post.dart';
 
-/// HomeScreen of the application.
-///
-/// Provides Navigation to various pages in the application and maintains their
-/// state.
-///
-/// Default first page is [TimelinePage].
 class HomeScreen extends StatefulWidget {
-  /// Creates a new [HomeScreen]
   const HomeScreen({Key? key}) : super(key: key);
 
-  /// List of pages available from the home screen.
   static const List<Widget> _homePages = <Widget>[
     _KeepAlivePage(child: TimelinePage()),
     _KeepAlivePage(child: SearchPage()),
@@ -38,8 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final iconColor = Theme.of(context).appBarTheme.iconTheme!.color!;
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('Stream-agram', style: GoogleFonts.grandHotel(fontSize: 32)),
+        title: Text('MAALF', style: GoogleFonts.pacifico(fontSize: 26)),
         elevation: 0,
         centerTitle: false,
         actions: [

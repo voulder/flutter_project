@@ -5,11 +5,7 @@ import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
 import 'widgets/widgets.dart';
 
-/// {@template timeline_page}
-/// Page to display a timeline of user created posts. Global 'timeline'
-/// {@endtemplate}
 class TimelinePage extends StatefulWidget {
-  /// {@macro timeline_page}
   const TimelinePage({Key? key}) : super(key: key);
 
   @override
@@ -57,7 +53,6 @@ class _TimelinePageState extends State<TimelinePage> {
   }
 
   Future<void> _loadMore() async {
-    // Ensure we're not already loading more activities.
     if (!_isPaginating) {
       _isPaginating = true;
       context.feedBloc
@@ -109,7 +104,6 @@ class _TimelinePageState extends State<TimelinePage> {
                 child: ListView.builder(
                   itemCount: activities.length,
                   itemBuilder: (context, index) {
-                    // Pagination (Infinite scroll)
                     bool shouldLoadMore = activities.length - 3 == index;
                     if (shouldLoadMore) {
                       _loadMore();

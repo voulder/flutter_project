@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import '../../app/app.dart';
 import '../home/home.dart';
 
-/// {@template login_screen}
-/// Screen that presents an option of users to authenticate as.
-/// {@endtemplate}
 class LoginScreen extends StatefulWidget {
-  /// {@macro login_screen}
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -19,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: const Text('Demo users')),
+      appBar: AppBar(title: const Text('Users')),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: SizedBox(
