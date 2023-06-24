@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../app/app.dart';
-import 'app_widgets.dart';
+import '../../app/app_barrel.dart';
+import 'app_widgets_barrel.dart';
 
 class CommentBox extends StatelessWidget {
   const CommentBox({
@@ -12,7 +12,7 @@ class CommentBox extends StatelessWidget {
     required this.onSubmitted,
   }) : super(key: key);
 
-  final StreamagramUser commenter;
+  final MaalfUser commenter;
   final TextEditingController textEditingController;
   final FocusNode focusNode;
   final Function(String?) onSubmitted;
@@ -55,7 +55,7 @@ class CommentBox extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Avatar.medium(streamagramUser: commenter),
+                child: profilePicture.medium(maalfUser: commenter),
               ),
               Expanded(
                 child: TextField(

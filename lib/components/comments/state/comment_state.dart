@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
-import '../../../app/state/models/models.dart';
+import '../../../app/state/models/models_barrel.dart';
 
 enum TypeOfComment {
   activityComment,
@@ -23,7 +23,7 @@ class CommentFocus {
 
   final String id;
 
-  final StreamagramUser user;
+  final MaalfUser user;
 }
 
 class CommentState extends ChangeNotifier {
@@ -34,7 +34,7 @@ class CommentState extends ChangeNotifier {
 
   final String activityId;
 
-  final StreamagramUser activityOwnerData;
+  final MaalfUser activityOwnerData;
 
   late CommentFocus commentFocus = CommentFocus(
     typeOfComment: TypeOfComment.activityComment,

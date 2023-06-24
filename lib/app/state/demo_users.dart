@@ -3,8 +3,7 @@ import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 late StreamFeedClient serverClient;
 
 String? apiKey = 'dnr3fd6k83bt';
-String? apiSecret =
-    'f2w3w75k28y4dfmmtercm3dhwjt7nbfc48m9s65rurmn42uh6kce6u4ssyrcspfm';
+String? apiSecret = 'f2w3w75k28y4dfmmtercm3dhwjt7nbfc48m9s65rurmn42uh6kce6u4ssyrcspfm';
 
 void generate() {
   print('\nCreating server client...\n');

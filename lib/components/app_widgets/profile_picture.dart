@@ -1,54 +1,53 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../../app/app_barrel.dart';
 
-import '../../app/app.dart';
-
-class Avatar extends StatelessWidget {
-  const Avatar.tiny({
+class profilePicture extends StatelessWidget {
+  const profilePicture.tiny({
     Key? key,
-    required this.streamagramUser,
-  })  : _avatarSize = _tinyAvatarSize,
+    required this.maalfUser,
+  })  : _profilepictureSize = _tinyprofilePictureSize,
         _coloredCircle = _tinyColoredCircle,
         hasNewStory = false,
         fontSize = 12,
         isThumbnail = true,
         super(key: key);
 
-  const Avatar.small({
+  const profilePicture.small({
     Key? key,
-    required this.streamagramUser,
-  })  : _avatarSize = _smallAvatarSize,
+    required this.maalfUser,
+  })  : _profilepictureSize = _smallprofilePictureSize,
         _coloredCircle = _smallColoredCircle,
         hasNewStory = false,
         fontSize = 14,
         isThumbnail = true,
         super(key: key);
 
-  const Avatar.medium({
+  const profilePicture.medium({
     Key? key,
     this.hasNewStory = false,
-    required this.streamagramUser,
-  })  : _avatarSize = _mediumAvatarSize,
+    required this.maalfUser,
+  })  : _profilepictureSize = _mediumprofilePictureSize,
         _coloredCircle = _mediumColoredCircle,
         fontSize = 20,
         isThumbnail = true,
         super(key: key);
 
-  const Avatar.big({
+  const profilePicture.big({
     Key? key,
     this.hasNewStory = false,
-    required this.streamagramUser,
-  })  : _avatarSize = _largeAvatarSize,
+    required this.maalfUser,
+  })  : _profilepictureSize = _largeprofilePictureSize,
         _coloredCircle = _largeColoredCircle,
         fontSize = 26,
         isThumbnail = false,
         super(key: key);
 
-  const Avatar.huge({
+  const profilePicture.huge({
     Key? key,
     this.hasNewStory = false,
-    required this.streamagramUser,
-  })  : _avatarSize = _hugeAvatarSize,
+    required this.maalfUser,
+  })  : _profilepictureSize = _hugeprofilePictureSize,
         _coloredCircle = _hugeColoredCircle,
         fontSize = 30,
         isThumbnail = false,
@@ -56,31 +55,31 @@ class Avatar extends StatelessWidget {
 
   final bool hasNewStory;
 
-  final StreamagramUser streamagramUser;
+  final MaalfUser maalfUser;
 
   final double fontSize;
 
-  final double _avatarSize;
+  final double _profilepictureSize;
   final double _coloredCircle;
 
-  static const _tinyAvatarSize = 22.0;
-  static const _tinyPaddedCircle = _tinyAvatarSize + 2;
+  static const _tinyprofilePictureSize = 22.0;
+  static const _tinyPaddedCircle = _tinyprofilePictureSize + 2;
   static const _tinyColoredCircle = _tinyPaddedCircle * 2 + 4;
 
-  static const _smallAvatarSize = 30.0;
-  static const _smallPaddedCircle = _smallAvatarSize + 2;
+  static const _smallprofilePictureSize = 30.0;
+  static const _smallPaddedCircle = _smallprofilePictureSize + 2;
   static const _smallColoredCircle = _smallPaddedCircle * 2 + 4;
 
-  static const _mediumAvatarSize = 40.0;
-  static const _mediumPaddedCircle = _mediumAvatarSize + 2;
+  static const _mediumprofilePictureSize = 40.0;
+  static const _mediumPaddedCircle = _mediumprofilePictureSize + 2;
   static const _mediumColoredCircle = _mediumPaddedCircle * 2 + 4;
 
-  static const _largeAvatarSize = 90.0;
-  static const _largPaddedCircle = _largeAvatarSize + 2;
+  static const _largeprofilePictureSize = 90.0;
+  static const _largPaddedCircle = _largeprofilePictureSize + 2;
   static const _largeColoredCircle = _largPaddedCircle * 2 + 4;
 
-  static const _hugeAvatarSize = 120.0;
-  static const _hugePaddedCircle = _hugeAvatarSize + 2;
+  static const _hugeprofilePictureSize = 120.0;
+  static const _hugePaddedCircle = _hugeprofilePictureSize + 2;
   static const _hugeColoredCircle = _hugePaddedCircle * 2 + 4;
 
   final bool isThumbnail;
@@ -88,8 +87,8 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final picture = _CircularProfilePicture(
-      size: _avatarSize,
-      userData: streamagramUser,
+      size: _profilepictureSize,
+      userData: maalfUser,
       fontSize: fontSize,
       isThumbnail: isThumbnail,
     );
@@ -118,7 +117,7 @@ class _CircularProfilePicture extends StatelessWidget {
     this.isThumbnail = false,
   }) : super(key: key);
 
-  final StreamagramUser userData;
+  final MaalfUser userData;
 
   final double size;
   final double fontSize;

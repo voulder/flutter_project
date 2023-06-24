@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
-import 'models/models.dart';
+import 'models/models_barrel.dart';
 
 import 'demo_users.dart';
 
@@ -15,10 +15,10 @@ class AppState extends ChangeNotifier {
 
   StreamUser get user => _client.currentUser!;
 
-  StreamagramUser? _streamagramUser;
+  MaalfUser? _maalfUser;
   var isUploadingProfilePicture = false;
 
-  StreamagramUser? get streamagramUser => _streamagramUser;
+  MaalfUser? get maalfUser => _maalfUser;
 
   FlatFeed get currentUserFeed => _client.flatFeed('user', user.id);
 
@@ -32,7 +32,7 @@ class AppState extends ChangeNotifier {
     );
 
     if (currentUser.data != null) {
-      _streamagramUser = StreamagramUser.fromMap(currentUser.data!);
+      _maalfUser = MaalfUser.fromMap(currentUser.data!);
       await currentTimelineFeed.follow(currentUserFeed);
       notifyListeners();
       return true;
@@ -64,7 +64,7 @@ class AppState extends ChangeNotifier {
       )
     ]);
 
-    _streamagramUser = _streamagramUser?.copyWith(
+    _maalfUser = _maalfUser?.copyWith(
       profilePhoto: imageUrl,
       profilePhotoResized: results[0],
       profilePhotoThumbnail: results[1],
@@ -72,8 +72,8 @@ class AppState extends ChangeNotifier {
 
     isUploadingProfilePicture = false;
 
-    if (_streamagramUser != null) {
-      await client.currentUser!.update(_streamagramUser!.toMap());
+    if (_maalfUser != null) {
+      await client.currentUser!.update(_maalfUser!.toMap());
     }
 
     notifyListeners();

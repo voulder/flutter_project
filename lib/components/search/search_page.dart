@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
-import '../../app/app.dart';
-import '../app_widgets/app_widgets.dart';
+import '../../app/app_barrel.dart';
+import '../app_widgets/app_widgets_barrel.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -35,9 +35,9 @@ class _UserProfile extends StatefulWidget {
 class __UserProfileState extends State<_UserProfile> {
   late StreamUser streamUser;
   late bool isFollowing;
-  late Future<StreamagramUser> userDataFuture = getUser();
+  late Future<MaalfUser> userDataFuture = getUser();
 
-  Future<StreamagramUser> getUser() async {
+  Future<MaalfUser> getUser() async {
     final userClient = context.appState.client.user(widget.userId);
     final futures = await Future.wait([
       userClient.get(),
@@ -46,7 +46,7 @@ class __UserProfileState extends State<_UserProfile> {
     streamUser = futures[0] as StreamUser;
     isFollowing = futures[1] as bool;
 
-    return StreamagramUser.fromMap(streamUser.data!);
+    return MaalfUser.fromMap(streamUser.data!);
   }
 
   Future<bool> _isFollowingUser(String userId) async {
@@ -55,7 +55,7 @@ class __UserProfileState extends State<_UserProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<StreamagramUser>(
+    return FutureBuilder<MaalfUser>(
       future: userDataFuture,
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
@@ -93,7 +93,7 @@ class _ProfileTile extends StatefulWidget {
   }) : super(key: key);
 
   final StreamUser user;
-  final StreamagramUser userData;
+  final MaalfUser userData;
   final bool isFollowing;
 
   @override
@@ -138,7 +138,7 @@ class __ProfileTileState extends State<_ProfileTile> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Avatar.medium(streamagramUser: widget.userData),
+          child: profilePicture.medium(maalfUser: widget.userData),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 @immutable
-class StreamagramUser {
-  const StreamagramUser({
+class MaalfUser {
+  const MaalfUser({
     required this.firstName,
     required this.lastName,
     required this.fullName,
@@ -13,8 +13,8 @@ class StreamagramUser {
     required this.profilePhotoThumbnail,
   });
 
-  factory StreamagramUser.fromMap(Map<String, dynamic> map) {
-    return StreamagramUser(
+  factory MaalfUser.fromMap(Map<String, dynamic> map) {
+    return MaalfUser(
       firstName: map['first_name'] as String? ?? 'No name',
       lastName: map['last_name'] as String? ?? 'No last name',
       fullName: map['full_name'] as String? ?? 'No full name',
@@ -24,8 +24,8 @@ class StreamagramUser {
     );
   }
 
-  factory StreamagramUser.fromJson(String source) =>
-      StreamagramUser.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory MaalfUser.fromJson(String source) =>
+      MaalfUser.fromMap(json.decode(source) as Map<String, dynamic>);
 
   final String firstName;
 
@@ -39,7 +39,7 @@ class StreamagramUser {
 
   final String? profilePhotoThumbnail;
 
-  StreamagramUser copyWith({
+  MaalfUser copyWith({
     String? firstName,
     String? lastName,
     String? fullName,
@@ -47,7 +47,7 @@ class StreamagramUser {
     String? profilePhotoResized,
     String? profilePhotoThumbnail,
   }) {
-    return StreamagramUser(
+    return MaalfUser(
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       fullName: fullName ?? this.fullName,
@@ -80,7 +80,7 @@ class StreamagramUser {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is StreamagramUser &&
+    return other is MaalfUser &&
         other.firstName == firstName &&
         other.lastName == lastName &&
         other.fullName == fullName &&

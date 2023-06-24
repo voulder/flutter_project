@@ -3,9 +3,9 @@ import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
-import '../../app/app.dart';
-import '../app_widgets/app_widgets.dart';
-import 'state/state.dart';
+import '../../app/app_barrel.dart';
+import '../app_widgets/app_widgets_barrel.dart';
+import 'state/state_barrel.dart';
 
 class CommentsScreen extends StatefulWidget {
   const CommentsScreen({
@@ -16,11 +16,11 @@ class CommentsScreen extends StatefulWidget {
 
   final EnrichedActivity enrichedActivity;
 
-  final StreamagramUser activityOwnerData;
+  final MaalfUser activityOwnerData;
 
   static Route route({
     required EnrichedActivity enrichedActivity,
-    required StreamagramUser activityOwnerData,
+    required MaalfUser activityOwnerData,
   }) =>
       MaterialPageRoute(
         builder: (context) => CommentsScreen(
@@ -217,7 +217,7 @@ class __CommentBoxState extends State<_CommentBox> {
                       : const SizedBox.shrink(),
             ),
             CommentBox(
-              commenter: context.appState.streamagramUser!,
+              commenter: context.appState.maalfUser!,
               textEditingController: _commentTextController,
               onSubmitted: handleSubmit,
               focusNode: focusNode,
@@ -276,7 +276,7 @@ class _CommentTile extends StatefulWidget {
 }
 
 class __CommentTileState extends State<_CommentTile> {
-  late final userData = StreamagramUser.fromMap(widget.reaction.user!.data!);
+  late final userData = MaalfUser.fromMap(widget.reaction.user!.data!);
   late final message = extractMessage;
 
   late final timeSince = _timeSinceComment();
@@ -349,8 +349,8 @@ class __CommentTileState extends State<_CommentTile> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: (widget.isReplyToComment)
-                  ? Avatar.tiny(streamagramUser: userData)
-                  : Avatar.small(streamagramUser: userData),
+                  ? profilePicture.tiny(maalfUser: userData)
+                  : profilePicture.small(maalfUser: userData),
             ),
             Expanded(
               child: Column(
@@ -418,7 +418,7 @@ class __CommentTileState extends State<_CommentTile> {
                                       typeOfComment:
                                           TypeOfComment.reactionComment,
                                       id: widget.reaction.id!,
-                                      user: StreamagramUser.fromMap(
+                                      user: MaalfUser.fromMap(
                                           widget.reaction.user!.data!),
                                       reaction: widget.reaction,
                                     ),

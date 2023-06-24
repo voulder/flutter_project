@@ -4,8 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../../app/app.dart';
-import '../app_widgets/app_widgets.dart';
+import '../../app/app_barrel.dart';
+import '../app_widgets/app_widgets_barrel.dart';
 
 class NewPostScreen extends StatefulWidget {
   const NewPostScreen({Key? key}) : super(key: key);

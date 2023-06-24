@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:stream_agram/app/app.dart';
-import 'package:stream_agram/components/app_widgets/app_widgets.dart';
+import 'package:stream_agram/app/app_barrel.dart';
+import 'package:stream_agram/components/app_widgets/app_widgets_barrel.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
-import 'widgets/widgets.dart';
+import 'widgets/widgets_barrel.dart';
 
 class TimelinePage extends StatefulWidget {
   const TimelinePage({Key? key}) : super(key: key);
@@ -120,7 +120,7 @@ class _TimelinePageState extends State<TimelinePage> {
             },
           ),
           _CommentBox(
-            commenter: context.appState.streamagramUser!,
+            commenter: context.appState.maalfUser!,
             textEditingController: _commentTextController,
             focusNode: _commentFocusNode,
             addComment: addComment,
@@ -142,7 +142,7 @@ class _CommentBox extends StatefulWidget {
     required this.showCommentBox,
   }) : super(key: key);
 
-  final StreamagramUser commenter;
+  final MaalfUser commenter;
   final TextEditingController textEditingController;
   final FocusNode focusNode;
   final Function(String?) addComment;

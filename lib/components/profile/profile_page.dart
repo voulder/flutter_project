@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:stream_agram/components/profile/edit_profile_screen.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
-import '../../app/app.dart';
-import '../app_widgets/app_widgets.dart';
-import '../new_post/new_post.dart';
+import '../../app/app_barrel.dart';
+import '../app_widgets/app_widgets_barrel.dart';
+import '../new_post/new_post_barrel.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -159,16 +159,16 @@ class _ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final feedState = context.watch<AppState>();
-    final streamagramUser = feedState.streamagramUser;
-    if (streamagramUser == null) return const SizedBox.shrink();
+    final maalfUser = feedState.maalfUser;
+    if (maalfUser == null) return const SizedBox.shrink();
     return Column(
       children: [
         Row(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Avatar.big(
-                streamagramUser: streamagramUser,
+              child: profilePicture.big(
+                maalfUser: maalfUser,
               ),
             ),
             const Spacer(),
@@ -228,7 +228,7 @@ class _ProfileHeader extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(streamagramUser.fullName,
+            child: Text(maalfUser.fullName,
                 style: AppTextStyle.textStyleBoldMedium),
           ),
         ),

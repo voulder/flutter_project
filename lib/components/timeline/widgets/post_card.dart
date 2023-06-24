@@ -4,8 +4,8 @@ import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
-import '../../../app/app.dart';
-import '../../app_widgets/app_widgets.dart';
+import '../../../app/app_barrel.dart';
+import '../../app_widgets/app_widgets_barrel.dart';
 import '../../comments/comments_screen.dart';
 
 typedef OnAddComment = void Function(
@@ -26,7 +26,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final actorData = enrichedActivity.actor!.data;
-    final userData = StreamagramUser.fromMap(actorData as Map<String, dynamic>);
+    final userData = MaalfUser.fromMap(actorData as Map<String, dynamic>);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +173,7 @@ class __PictureCarousalState extends State<_PictureCarousal> {
                 Navigator.of(context).push(
                   CommentsScreen.route(
                     enrichedActivity: widget.enrichedActivity,
-                    activityOwnerData: StreamagramUser.fromMap(map),
+                    activityOwnerData: MaalfUser.fromMap(map),
                   ),
                 );
               },
@@ -196,14 +196,14 @@ class __PictureCarousalState extends State<_PictureCarousal> {
             style: AppTextStyle.textStyleLight,
             children: <TextSpan>[
               TextSpan(
-                  text: StreamagramUser.fromMap(
+                  text: MaalfUser.fromMap(
                           likeReactions[0].user?.data as Map<String, dynamic>)
                       .fullName,
                   style: AppTextStyle.textStyleBold),
               if (likeCount > 1 && likeCount < 3) ...[
                 const TextSpan(text: ' and '),
                 TextSpan(
-                    text: StreamagramUser.fromMap(
+                    text: MaalfUser.fromMap(
                             likeReactions[1].user?.data as Map<String, dynamic>)
                         .fullName,
                     style: AppTextStyle.textStyleBold),
@@ -293,7 +293,7 @@ class _InteractiveCommentSlabState extends State<_InteractiveCommentSlab> {
               TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                      text: StreamagramUser.fromMap(
+                      text: MaalfUser.fromMap(
                               comments[0].user?.data as Map<String, dynamic>)
                           .fullName,
                       style: AppTextStyle.textStyleBold),
@@ -310,7 +310,7 @@ class _InteractiveCommentSlabState extends State<_InteractiveCommentSlab> {
               TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                      text: StreamagramUser.fromMap(
+                      text: MaalfUser.fromMap(
                               comments[1].user?.data as Map<String, dynamic>)
                           .fullName,
                       style: AppTextStyle.textStyleBold),
@@ -330,7 +330,7 @@ class _InteractiveCommentSlabState extends State<_InteractiveCommentSlab> {
 
                 Navigator.of(context).push(CommentsScreen.route(
                   enrichedActivity: widget.enrichedActivity,
-                  activityOwnerData: StreamagramUser.fromMap(map),
+                  activityOwnerData: MaalfUser.fromMap(map),
                 ));
               },
               child: Text(
@@ -404,12 +404,12 @@ class _ProfilePicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final streamagramUser = context.watch<AppState>().streamagramUser;
-    if (streamagramUser == null) {
+    final maalfUser = context.watch<AppState>().maalfUser;
+    if (maalfUser == null) {
       return const Icon(Icons.error);
     }
-    return Avatar.small(
-      streamagramUser: streamagramUser,
+    return profilePicture.small(
+      maalfUser: maalfUser,
     );
   }
 }
@@ -420,7 +420,7 @@ class _ProfileSlab extends StatelessWidget {
     required this.userData,
   }) : super(key: key);
 
-  final StreamagramUser userData;
+  final MaalfUser userData;
 
   @override
   Widget build(BuildContext context) {
@@ -428,7 +428,7 @@ class _ProfileSlab extends StatelessWidget {
       padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
       child: Row(
         children: [
-          Avatar.medium(streamagramUser: userData),
+          profilePicture.medium(maalfUser: userData),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(

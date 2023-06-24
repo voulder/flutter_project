@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stream_agram/app/app.dart';
+import 'package:stream_agram/app/app_barrel.dart';
 import 'package:stream_feed_flutter_core/stream_feed_flutter_core.dart';
 
-import '../components/login/login.dart';
+import '../components/login/login_barrel.dart';
 
-class StreamagramApp extends StatefulWidget {
-  const StreamagramApp({
+class MaalfApp extends StatefulWidget {
+  const MaalfApp({
     Key? key,
     required this.appTheme,
   }) : super(key: key);
@@ -14,10 +14,10 @@ class StreamagramApp extends StatefulWidget {
   final AppTheme appTheme;
 
   @override
-  State<StreamagramApp> createState() => _StreamagramAppState();
+  State<MaalfApp> createState() => _MaalfAppState();
 }
 
-class _StreamagramAppState extends State<StreamagramApp> {
+class _MaalfAppState extends State<MaalfApp> {
   final _client = StreamFeedClient('dnr3fd6k83bt');
   late final appState = AppState(client: _client);
 

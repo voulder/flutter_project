@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'app/app.dart';
+import 'app/app_barrel.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final theme = AppTheme();
-  runApp(StreamagramApp(appTheme: theme));
+  runApp(MaalfApp(appTheme: theme));
   generate();
 }

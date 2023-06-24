@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../app/app.dart';
-import '../app_widgets/app_widgets.dart';
+import '../../app/app_barrel.dart';
+import '../app_widgets/app_widgets_barrel.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({
@@ -26,9 +26,9 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final streamagramUser = context
-        .select<AppState, StreamagramUser?>((value) => value.streamagramUser);
-    if (streamagramUser == null) {
+    final maalfUser = context
+        .select<AppState, MaalfUser?>((value) => value.maalfUser);
+    if (maalfUser == null) {
       return const Scaffold(
         body: Center(
           child: Text('You should not see this.\nUser data is empty.'),
@@ -80,7 +80,7 @@ class EditProfileScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${streamagramUser.fullName} ',
+                  '${maalfUser.fullName} ',
                   style: AppTextStyle.textStyleBoldMedium,
                 ),
               ],
@@ -146,8 +146,8 @@ class __ChangeProfilePictureButtonState
 
   @override
   Widget build(BuildContext context) {
-    final streamagramUser = context
-        .select<AppState, StreamagramUser>((value) => value.streamagramUser!);
+    final maalfUser = context
+        .select<AppState, MaalfUser>((value) => value.maalfUser!);
     final isUploadingProfilePicture = context
         .select<AppState, bool>((value) => value.isUploadingProfilePicture);
     return Padding(
@@ -162,7 +162,7 @@ class __ChangeProfilePictureButtonState
                   ? const CircularProgressIndicator()
                   : GestureDetector(
                       onTap: _changePicture,
-                      child: Avatar.huge(streamagramUser: streamagramUser),
+                      child: profilePicture.huge(maalfUser: maalfUser),
                     ),
             ),
           ),

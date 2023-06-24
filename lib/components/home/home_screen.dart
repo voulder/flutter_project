@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:stream_agram/components/profile/profile.dart';
+import 'package:stream_agram/components/profile/profile_barrel.dart';
 import 'package:stream_agram/components/search/search_page.dart';
 import 'package:stream_agram/components/timeline/timeline_page.dart';
 
-import '../../app/app.dart';
-import '../app_widgets/app_widgets.dart';
-import '../new_post/new_post.dart';
+import '../../app/app_barrel.dart';
+import '../app_widgets/app_widgets_barrel.dart';
+import '../new_post/new_post_barrel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -49,15 +49,15 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: const NeverScrollableScrollPhysics(),
         children: HomeScreen._homePages,
       ),
-      bottomNavigationBar: _StreamagramBottomNavBar(
+      bottomNavigationBar: _MaalfBottomNavBar(
         pageController: pageController,
       ),
     );
   }
 }
 
-class _StreamagramBottomNavBar extends StatefulWidget {
-  const _StreamagramBottomNavBar({
+class _MaalfBottomNavBar extends StatefulWidget {
+  const _MaalfBottomNavBar({
     Key? key,
     required this.pageController,
   }) : super(key: key);
@@ -65,11 +65,11 @@ class _StreamagramBottomNavBar extends StatefulWidget {
   final PageController pageController;
 
   @override
-  State<_StreamagramBottomNavBar> createState() =>
-      _StreamagramBottomNavBarState();
+  State<_MaalfBottomNavBar> createState() =>
+      _MaalfBottomNavBarState();
 }
 
-class _StreamagramBottomNavBarState extends State<_StreamagramBottomNavBar> {
+class _MaalfBottomNavBarState extends State<_MaalfBottomNavBar> {
   void _onNavigationItemTapped(int index) {
     widget.pageController.jumpToPage(index);
   }

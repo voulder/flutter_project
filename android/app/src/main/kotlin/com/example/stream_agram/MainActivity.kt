@@ -1,4 +1,4 @@
-package com.example.stream_agram
+package com.maalf.maalf
 
 import io.flutter.embedding.android.FlutterActivity
 
