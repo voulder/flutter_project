@@ -1,6 +1,7 @@
 # MAALF
 
-A new Flutter project.
+%TODO: -Implementing firebase
+       -Reworking search tab
 
 ## Getting Started
 
