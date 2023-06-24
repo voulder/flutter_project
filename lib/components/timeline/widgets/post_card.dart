@@ -181,25 +181,6 @@ class __PictureCarousalState extends State<_PictureCarousal> {
               iconColor: iconColor,
             ),
           ),
-          Padding(
-            padding: iconPadding,
-            child: TapFadeIcon(
-              onTap: () =>
-                  context.removeAndShowSnackbar('Message: Not yet implemented'),
-              icon: Icons.call_made,
-              iconColor: iconColor,
-            ),
-          ),
-          const Spacer(),
-          Padding(
-            padding: iconPadding,
-            child: TapFadeIcon(
-              onTap: () => context
-                  .removeAndShowSnackbar('Bookmark: Not yet implemented'),
-              icon: Icons.bookmark_border,
-              iconColor: iconColor,
-            ),
-          ),
         ],
       )
     ];
@@ -454,12 +435,6 @@ class _ProfileSlab extends StatelessWidget {
               userData.fullName,
               style: AppTextStyle.textStyleBold,
             ),
-          ),
-          const Spacer(),
-          TapFadeIcon(
-            onTap: () => context.removeAndShowSnackbar('Not part of the demo'),
-            icon: Icons.more_horiz,
-            iconColor: Theme.of(context).iconTheme.color!,
           ),
         ],
       ),

@@ -42,25 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
               iconColor: iconColor,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: TapFadeIcon(
-              onTap: () async {
-                context.removeAndShowSnackbar('Not part of the demo');
-              },
-              icon: Icons.favorite_outline,
-              iconColor: iconColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TapFadeIcon(
-              onTap: () =>
-                  context.removeAndShowSnackbar('Not part of the demo'),
-              icon: Icons.call_made,
-              iconColor: iconColor,
-            ),
-          ),
         ],
       ),
       body: PageView(
