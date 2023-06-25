@@ -17,6 +17,7 @@ void generate() {
 enum DemoAppUser {
   andy,
   aurel,
+  darryl,
   farhan,
   levina,
   maggie,
@@ -26,6 +27,7 @@ extension DemoAppUserX on DemoAppUser {
   String get id => {
         DemoAppUser.andy: 'andhika-putra',
         DemoAppUser.aurel: 'aurelia-aurelia',
+        DemoAppUser.darryl: 'darryl-matthew',
         DemoAppUser.farhan: 'farhan-adithya',
         DemoAppUser.levina: 'levina-olivia',
         DemoAppUser.maggie: 'maggie-lim',
@@ -34,6 +36,7 @@ extension DemoAppUserX on DemoAppUser {
   String? get name => {
         DemoAppUser.andy: 'Andhika Putra',
         DemoAppUser.aurel: 'Aurelia Aurelia',
+        DemoAppUser.darryl: 'Darryl Matthew',
         DemoAppUser.farhan: 'Farhan Adithya',
         DemoAppUser.levina: 'Levina Olivia',
         DemoAppUser.maggie: 'Maggie Lim',
@@ -49,6 +52,11 @@ extension DemoAppUserX on DemoAppUser {
           'first_name': 'Aurelia',
           'last_name': 'Aurelia',
           'full_name': 'Aurelia Aurelia',
+        },
+        DemoAppUser.darryl: {
+          'first_name': 'Darryl',
+          'last_name': 'Matthew',
+          'full_name': 'Darryl Matthew',
         },
         DemoAppUser.farhan: {
           'first_name': 'Farhan',
@@ -71,6 +79,7 @@ extension DemoAppUserX on DemoAppUser {
     final frontendTokens = <DemoAppUser, Token>{
       DemoAppUser.andy: serverClient.frontendToken('andhika-putra'),
       DemoAppUser.aurel: serverClient.frontendToken('aurelia-aurelia'),
+      DemoAppUser.darryl: serverClient.frontendToken('darryl-matthew'),
       DemoAppUser.farhan: serverClient.frontendToken('farhan-adithya'),
       DemoAppUser.levina: serverClient.frontendToken('levina-olivia'),
       DemoAppUser.maggie: serverClient.frontendToken('maggie-lim'),
