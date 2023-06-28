@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../../app/app_barrel.dart';
 import '../home/home_barrel.dart';
 
@@ -15,9 +15,13 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: const Text('Users')),
+      appBar: AppBar(
+        title: Text('MAALF', style: GoogleFonts.pacifico(fontSize: 26)),
+        backgroundColor: Colors.black,
+        elevation: 0,
+      ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 64.0),
         child: SizedBox(
           width: size.width,
           height: size.height,
@@ -28,56 +32,71 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 42),
                 for (final user in DemoAppUser.values)
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => Colors.white),
-                        padding: MaterialStateProperty.all(
-                          const EdgeInsets.symmetric(horizontal: 4.0),
-                        ),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24.0),
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith(
+                                (states) => Colors.blue),
+                            padding: MaterialStateProperty.all(
+                              const EdgeInsets.symmetric(horizontal: 4.0),
+                            ),
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          onPressed: () async {
+                            context.removeAndShowSnackbar('Connecting user');
+
+                            final success = await context.appState.connect(user);
+
+                            if (success) {
+                              if (!mounted) return;
+                              context.removeAndShowSnackbar('User connected');
+
+                              await Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (_) => const HomeScreen(),
+                                ),
+                              );
+                            } else {
+                              if (!mounted) return;
+                              context
+                                  .removeAndShowSnackbar('Could not connect user');
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 12.0, horizontal: 18.0),
+                            child: Text(
+                              user.name!,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
-                      ),
-                      onPressed: () async {
-                        context.removeAndShowSnackbar('Connecting user');
-
-                        final success = await context.appState.connect(user);
-
-                        if (success) {
-                          if (!mounted) return;
-                          context.removeAndShowSnackbar('User connected');
-
-                          await Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (_) => const HomeScreen(),
-                            ),
-                          );
-                        } else {
-                          if (!mounted) return;
-                          context
-                              .removeAndShowSnackbar('Could not connect user');
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 24.0, horizontal: 36.0),
-                        child: SizedBox(
-                          width: 200,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
                           child: Text(
-                            user.name!,
+                            '@${user.id}',
                             style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.blueGrey,
+                              fontSize: 12,
+                              color: Colors.grey,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  )
+                  ),
               ],
             ),
           ),
